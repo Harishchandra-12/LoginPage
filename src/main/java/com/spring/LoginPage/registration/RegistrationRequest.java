@@ -1,8 +1,8 @@
-package com.spring.LoginPage.Registration;
+package com.spring.LoginPage.registration;
 
 
 public record RegistrationRequest(String firstName,
-         String LastName,
+         String lastName,
          String email,
          String password,
          String role,

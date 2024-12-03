@@ -1,6 +1,6 @@
-package com.spring.LoginPage.User;
+package com.spring.LoginPage.user;
 
-import com.spring.LoginPage.Registration.RegistrationRequest;
+import com.spring.LoginPage.registration.RegistrationRequest;
 
 import java.util.List;
 import java.util.Optional;

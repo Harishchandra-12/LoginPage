@@ -1,4 +1,4 @@
-package com.spring.LoginPage.User;
+package com.spring.LoginPage.user;
 
 
 import jakarta.persistence.Entity;
