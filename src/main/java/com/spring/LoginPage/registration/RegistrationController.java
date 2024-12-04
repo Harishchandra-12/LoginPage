@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,10 +21,9 @@ public class RegistrationController {
 
 
     @PostMapping("/registerUser")
-    public String registerUser(RegistrationRequest registrationRequest, HttpServletRequest request) {
+    public String registerUser(@RequestBody RegistrationRequest registrationRequest, final HttpServletRequest request) {
 
         User user = userService.registerUser(registrationRequest);
-
         applicationEventPublisher.publishEvent(new RegistrationCompleteEvent(user , applicationUrl(request)));
 
         return "Succesfully Created! Please check your email to complete your registration";

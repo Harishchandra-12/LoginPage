@@ -1,7 +1,9 @@
 package com.spring.LoginPage.event.listener;
 
 import com.spring.LoginPage.event.RegistrationCompleteEvent;
+import com.spring.LoginPage.registration.token.VerificationToken;
 import com.spring.LoginPage.user.User;
+import com.spring.LoginPage.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
@@ -14,6 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class RegistrationCompleteEventListener implements ApplicationListener<RegistrationCompleteEvent> {
 
+    private final UserService userService;
     @Override
     public void onApplicationEvent(RegistrationCompleteEvent event) {
 
@@ -24,7 +27,7 @@ public class RegistrationCompleteEventListener implements ApplicationListener<Re
         String verificationToken = UUID.randomUUID().toString();
 
         //Save verification token for user
-
+        userService.saveUserVerificationToken( user , verificationToken);
         //Build the verification url
         String url = event.getApplicationUrl()+"/api/v1/register/verifyemail?token="+verificationToken;
 

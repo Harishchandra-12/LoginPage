@@ -2,6 +2,8 @@ package com.spring.LoginPage.user;
 
 import com.spring.LoginPage.exception.UserAlreadyExistsException;
 import com.spring.LoginPage.registration.RegistrationRequest;
+import com.spring.LoginPage.registration.token.VerificationToken;
+import com.spring.LoginPage.registration.token.VerificationTokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,8 +16,9 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService{
 
 
-    private final UserRepository userRepository;
+    private final UserRepository userRepository ;
     private final PasswordEncoder passwordEncoder;
+    private final VerificationTokenRepository verificationTokenRepository;
 
 
     @Override
@@ -43,6 +46,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Optional<User> getUserByEmail(String email) {
-        return userRepository.findByEmail();
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void saveUserVerificationToken(User user, String token) {
+        VerificationToken verificationToken = new VerificationToken(token, user);
+        verificationTokenRepository.save(verificationToken);
+
     }
 }
