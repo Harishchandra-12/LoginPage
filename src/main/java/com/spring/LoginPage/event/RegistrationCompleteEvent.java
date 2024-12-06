@@ -23,8 +23,4 @@ public class RegistrationCompleteEvent extends ApplicationEvent {
     }
 
 
-    public RegistrationCompleteEvent(Object source) {
-        super(source);
-    }
-
 }

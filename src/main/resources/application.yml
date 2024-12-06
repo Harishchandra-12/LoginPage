@@ -1,6 +1,5 @@
 server:
   port: 9191
-
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/registration_db
@@ -8,10 +7,17 @@ spring:
     password: Harish@12
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
-        connection.url: jdbc:mysql://localhost:3306/registration_db
     hibernate:
       ddl-auto: update
     show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: harishpenumati12@gmail.com
+    password: your password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true

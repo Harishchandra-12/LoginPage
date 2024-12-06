@@ -18,7 +18,6 @@ public class VerificationToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String token;
     private Date expirationDate;
     private static final int EXPIRATION_TIME =15;
@@ -30,20 +29,22 @@ public class VerificationToken {
     public VerificationToken(String token, User user) {
         super();
         this.token = token;
-        this.expirationDate = getTokenExpirationDate();
+        this.expirationDate = getExpirationDate();
         this.user = user;
     }
 
     public VerificationToken(String token) {
         super();
         this.token = token;
-        this.expirationDate = getTokenExpirationDate();
+        this.expirationDate = getExpirationDate();
     }
 
-    private Date getTokenExpirationDate() {
+    public Date getTokenExpirationTime() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(new Date().getTime());
-        calendar.add(calendar.MINUTE , EXPIRATION_TIME);
+        calendar.add(Calendar.MINUTE, EXPIRATION_TIME);
         return new Date(calendar.getTime().getTime());
     }
+
+
 }
